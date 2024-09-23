@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-// use an unexported type as the key
+// use an unexported exmpty struct as the key
 //
 // why?
 // - to prevent collisions with other packages that use context

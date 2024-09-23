@@ -1,1 +1,1 @@
-# go
+# Examples for Go

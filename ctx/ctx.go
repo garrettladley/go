@@ -1,9 +1,6 @@
 package main
 
-import (
-	"context"
-	"fmt"
-)
+import "context"
 
 // use an unexported exmpty struct as the key
 //
@@ -24,18 +21,4 @@ func SetRequestID(ctx context.Context, requestID string) context.Context {
 func GetRequestID(ctx context.Context) (requestID string, ok bool) {
 	requestID, ok = ctx.Value(contextKey{}).(string)
 	return
-}
-
-func main() {
-	ctx := context.Background()
-
-	requestID, ok := GetRequestID(ctx)
-	fmt.Printf("before setting: requestID: '%s' ok: %t\n", requestID, ok)
-
-	v := "request_id"
-	ctx = SetRequestID(ctx, v)
-
-	requestID, ok = GetRequestID(ctx)
-	fmt.Printf("after setting: requestID: '%s' ok: %t\n", requestID, ok)
-	fmt.Printf("same: %t\n", v == requestID)
 }

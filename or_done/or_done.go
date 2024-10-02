@@ -20,7 +20,7 @@ func orDone[T any](ctx context.Context, c <-chan T) <-chan T {
 			case <-ctx.Done():
 				return
 			case v, ok := <-c:
-				if ok == false {
+				if !ok {
 					return
 				}
 				select {

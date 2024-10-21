@@ -1,4 +1,4 @@
-package main
+package ch
 
 // Or takes variadic channels and returns a single channel that closes when any of the
 // input channels close.
@@ -29,5 +29,6 @@ func Or[T any](channels ...<-chan T) <-chan T {
 			}
 		}
 	}()
+
 	return orDone
 }

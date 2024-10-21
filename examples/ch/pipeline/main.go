@@ -4,18 +4,20 @@ import (
 	"fmt"
 	"runtime"
 	"time"
+
+	"github.com/garrettladley/go/pkg/ch"
 )
 
 func main() {
 	done := make(chan struct{})
 	defer close(done)
 
-	for num := range Take(done, Repeat(done, 1), 10) {
+	for num := range ch.Take(done, ch.Repeat(done, 1), 10) {
 		fmt.Printf("%v ", num)
 	}
 
 	fn := func() string { return "some fn call" }
-	for num := range Take(done, RepeatFn(done, fn), 10) {
+	for num := range ch.Take(done, ch.RepeatFn(done, fn), 10) {
 		fmt.Println(num)
 	}
 
@@ -31,10 +33,10 @@ func main() {
 	}
 
 	for i := 0; i < numFns; i++ {
-		fns[i] = RepeatFn(done, longFn)
+		fns[i] = ch.RepeatFn(done, longFn)
 	}
 
-	for result := range Take(done, FanIn(done, fns...), 10) {
+	for result := range ch.Take(done, ch.FanIn(done, fns...), 10) {
 		fmt.Printf("\t%s\n", result)
 	}
 

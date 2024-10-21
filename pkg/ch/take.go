@@ -1,4 +1,4 @@
-package main
+package ch
 
 func Take[T any](done <-chan struct{}, valueStream <-chan T, num uint) <-chan T {
 	takeStream := make(chan T)

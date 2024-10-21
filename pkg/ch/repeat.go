@@ -1,4 +1,4 @@
-package main
+package ch
 
 func Repeat[T any](done <-chan struct{}, values ...T) <-chan T {
 	valueStream := make(chan T)

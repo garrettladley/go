@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"time"
+
+	"github.com/garrettladley/go/pkg/ch"
 )
 
 // Despite placing several channels in our call to or that take various times to
@@ -13,7 +15,7 @@ import (
 func main() {
 	start := time.Now()
 
-	<-Or(
+	<-ch.Or(
 		sig(2*time.Hour),
 		sig(5*time.Minute),
 		sig(1*time.Second),

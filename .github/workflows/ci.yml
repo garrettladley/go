@@ -5,8 +5,7 @@ permissions: read-all
 on:
   push:
     paths:
-      - cmd/**
-      - internal/**
+      - '**.go'
       - .github/workflows/ci.yml
 
 concurrency:

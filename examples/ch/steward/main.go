@@ -34,5 +34,4 @@ func main() {
 	for intVal := range ch.Take(done, stream, 15) {
 		fmt.Printf("Received: %v\n", intVal)
 	}
-
 }

@@ -10,11 +10,10 @@ import (
 
 func main() {
 	done := make(chan struct{})
-	// defer close(done)
-	time.AfterFunc(time.Second, func() { close(done) })
+	defer close(done)
+
 	fn := func() string {
-		duration := time.Duration(rand.Intn(5)+10) * time.Second
-		fmt.Println("fn: sleeping for", duration)
+		duration := time.Duration(rand.Intn(5)+1) * time.Second
 		time.Sleep(duration)
 		return "hello"
 	}

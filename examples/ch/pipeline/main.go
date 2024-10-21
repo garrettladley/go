@@ -16,9 +16,10 @@ func main() {
 		fmt.Printf("%v ", num)
 	}
 
-	fn := func() string { return "some fn call" }
-	for num := range ch.Take(done, ch.RepeatFn(done, fn), 10) {
-		fmt.Println(num)
+	fmt.Print("\n")
+
+	for num := range ch.Take(done, ch.RepeatFn(done, func() string { return "0" }, func() string { return "1" }), 10) {
+		fmt.Printf("%v ", num)
 	}
 
 	start := time.Now()
@@ -29,7 +30,7 @@ func main() {
 
 	longFn := func() string {
 		time.Sleep(1 * time.Second)
-		return fn() + " that takes a lloonngg time"
+		return "fn that takes a lloonngg time"
 	}
 
 	for i := 0; i < numFns; i++ {

@@ -8,7 +8,7 @@ func Bridge[T any](done <-chan struct{}, chanStream <-chan <-chan T) <-chan T {
 			var stream <-chan T
 			select {
 			case maybeStream, ok := <-chanStream:
-				if ok == false {
+				if !ok {
 					return
 				}
 				stream = maybeStream
